@@ -27,7 +27,8 @@ def get_refer_string(object):
     return ret
 def get_state_string(type, state):
     strings = [
-        ['关闭', '打开']
+        ['关闭', '打开'], 
+        ['关闭', '打开', '增强' ]
     ]
     return strings[type][state]
 
@@ -70,8 +71,11 @@ def hit(text, marks):
     return False
 def get_expect_state(text):
     marks = ['关']
+    marks_powerful = ['增强']
     if hit(text, marks):
         return 0
+    elif hit(text, marks_powerful):
+        return 2
     else:
         return 1
 
