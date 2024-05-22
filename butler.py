@@ -57,7 +57,8 @@ def get_auto_string(dt, view):
 def get_furniture_string(dt, furniture, state):
     return get_datetime_string(dt) + get_state_string(furniture['type'], state) + get_refer_string(furniture)
 
-def postJSON(method, input=None):
+def postJSON(method, input={}):
+    input['pk_uid'] = 0
     response = requests.post('http://localhost:11151' + method, data=json.dumps(input))
     if response.status_code != 200:
         raise Exception(response)
@@ -214,9 +215,3 @@ class Plugin(AbstractPlugin):
         input['view'] = view['uid']
         postJSON('/auto', input)
         self.say(get_auto_string(datetime.datetime.fromtimestamp(start), view))
-
-    
-        
-        
-
-        
